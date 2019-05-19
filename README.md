@@ -125,6 +125,13 @@ $ python3 export_graph.py --checkpoint_dir checkpoints/${datetime} \
                           --image_size 256
 ```
 
+You can also export from a checkpoint to a standalone SavedModel file as follow:
+
+```bash
+$ python3 export_graph_for_inference.py \
+    --checkpoint_dir checkpoints/${datetime} \
+    --image_size 256
+```
 
 ## Inference
 After exporting model, you can use it for inference. For example:
