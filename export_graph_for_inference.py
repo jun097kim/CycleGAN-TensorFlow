@@ -25,7 +25,7 @@ def export_graph():
         # input_image = tf.placeholder(tf.float32, shape=[FLAGS.image_size, FLAGS.image_size, 3], name='input_image')
 
         # 이미지를 base64 인코딩한 scalar 값을 받는다.
-        input_bytes = tf.placeholder(tf.string, shape=[])
+        input_bytes = tf.placeholder(tf.string, shape=[], name="input_bytes")
         # base64 이미지를 int Tensor 타입으로 변형한다.
         input_image = tf.image.decode_jpeg(input_bytes, channels=3)
         # 이미지를 리사이징한다.
@@ -38,7 +38,7 @@ def export_graph():
         cycle_gan.model()
         output_image = cycle_gan.G.sample(tf.expand_dims(input_image, 0))
 
-        output_bytes = tf.identity(output_image, name='output_image')
+        output_bytes = tf.identity(output_image, name='output_bytes')
         restore_saver = tf.train.Saver()
 
     with tf.Session(graph=graph) as sess:
